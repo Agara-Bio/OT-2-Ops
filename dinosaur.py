@@ -1,8 +1,10 @@
-def get_values(*names):
-            import json
-            _all_values = json.loads("""{"p300_mount":"right","tip_type":"opentrons_96_tiprack_300ul","plate_type":"corning_96_wellplate_360ul_flat","protocol_filename":"dinosaur"}""")
-            return [_all_values[n] for n in names]
+# Used to get arguments from user for non-coding modification of protocol
+#def get_values(*names):
+#            import json
+#            _all_values = json.loads("""{"p300_mount":"right","tip_type":"opentrons_96_tiprack_300ul","plate_type":"corning_96_wellplate_360ul_flat","protocol_filename":"dinosaur"}""")
+#            return [_all_values[n] for n in names]
 
+import opentrons
 
 metadata = {
     "protocolName": "Dinosaur",
@@ -11,15 +13,16 @@ metadata = {
     "apiLevel": "2.9",
 }
 
-
 def run(ctx):
-    [p300_mount, tip_type, plate_type] = get_values("p300_mount", "tip_type", "plate_type")
+    magnetic_module = ctx.load_module(module_name="magnetic module gen2", location=4)
+    thermocycler_module = ctx.load_module(module_name="thermocycler module")
+    [p20_mount, tip_type, plate_type] = ["left", "opentrons_96_tiprack_20ul", "corning_96_wellplate_360ul_flat"]
     tiprack = ctx.load_labware(tip_type, 6)
     plate = ctx.load_labware(plate_type, 3)
-    reservoir = ctx.load_labware("nest_12_reservoir_15ml", 8)
-    p300 = ctx.load_instrument("p300_single_gen2", p300_mount, tip_racks=[tiprack])
-    green = reservoir["A1"]
-    blue = reservoir["A2"]
+    tuberack = ctx.load_labware("opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap", 8)
+    p20 = ctx.load_instrument("p20_single_gen2", p20_mount, tip_racks=[tiprack])
+    green = tuberack["A1"]
+    blue = tuberack["A2"]
     green_wells = list(
         plate.wells(
             "E1",
@@ -68,5 +71,5 @@ def run(ctx):
     blue_wells = list(
         plate.wells("C3", "B4", "A5", "B5", "B6", "A7", "B7", "C8", "C9", "D9", "E10", "E11", "F11", "G12")
     )
-    p300.distribute(50, green, green_wells, disposal_vol=0, blow_out=True)
-    p300.distribute(50, blue, blue_wells, disposal_vol=0, blow_out=True)
+    p20.distribute(20, green, green_wells, disposal_vol=0, blow_out=True)
+    p20.distribute(20, blue, blue_wells, disposal_vol=0, blow_out=True)

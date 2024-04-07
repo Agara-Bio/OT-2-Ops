@@ -1,8 +1,8 @@
-def get_values(*names):
-            import json
-            _all_values = json.loads("""{"right_pipette":"p300_single_gen2","left_pipette":"p20_single_gen2","is_filtered":false,"tuberack_1_lname":"opentrons_24_tuberack_nest_1.5ml_snapcap","tuberack_2_lname":"opentrons_24_tuberack_nest_1.5ml_snapcap","reservoir12_lname":"nest_12_reservoir_15ml","master_mix_csv":"Reagent,Slot,Well,Volume\\nBuffer,1,A2,3\\nMgCl,1,A3,40\\ndNTPs,2,A2,90\\nWater,2,A3,248\\nprimer 1,1,A4,25\\nprimer 2,1,A5,25\\n","protocol_filename":"pcr_prep_part_1"}""")
-            return [_all_values[n] for n in names]
-
+# Used to get arguments from user for non-coding modification of protocol
+#def get_values(*names):
+#            import json
+#            _all_values = json.loads("""{"right_pipette":"p300_single_gen2","left_pipette":"p20_single_gen2","is_filtered":false,"tuberack_1_lname":"opentrons_24_tuberack_nest_1.5ml_snapcap","tuberack_2_lname":"opentrons_24_tuberack_nest_1.5ml_snapcap","reservoir12_lname":"nest_12_reservoir_15ml","master_mix_csv":"Reagent,Slot,Well,Volume\\nBuffer,1,A2,3\\nMgCl,1,A3,40\\ndNTPs,2,A2,90\\nWater,2,A3,248\\nprimer 1,1,A4,25\\nprimer 2,1,A5,25\\n","protocol_filename":"pcr_prep_part_1"}""")
+#            return [_all_values[n] for n in names]
 
 metadata = {
     "protocolName": "PCR Prep",

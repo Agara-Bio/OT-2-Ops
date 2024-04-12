@@ -21,8 +21,8 @@ def run(ctx):
     plate = ctx.load_labware(plate_type, 3)
     tuberack = ctx.load_labware("opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap", 8)
     p20 = ctx.load_instrument("p20_single_gen2", p20_mount, tip_racks=[tiprack])
-    green = tuberack["A1"]
-    blue = tuberack["A2"]
+    green = tuberack["B1"]
+    blue = tuberack["B2"]
     green_wells = list(
         plate.wells(
             "E1",

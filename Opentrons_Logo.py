@@ -1,10 +1,4 @@
-def get_values(*names):
-            import json
-            _all_values = json.loads("""{"_pip_model":"p300_single_gen2","_pip_mount":"right","_dp_type":"corning_96_wellplate_360ul_flat","_dye_type":"opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap","protocol_filename":"Opentrons_Logo"}""")
-            return [_all_values[n] for n in names]
-
-
-import math
+import math, opentrons
 
 from opentrons import protocol_api
 

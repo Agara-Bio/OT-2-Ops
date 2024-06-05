@@ -8,7 +8,7 @@ import opentrons
 
 metadata = {
     "protocolName": "Dinosaur",
-    "author": "Opentrons <protocols@opentrons.com>",
+    "author": "Rishi Wahi <>",
     "description": "Draw a picture of a dinosaur",
     "apiLevel": "2.9",
 }
@@ -17,11 +17,11 @@ def run(ctx):
     magnetic_module = ctx.load_module(module_name="magnetic module gen2", location=4)
     thermocycler_module = ctx.load_module(module_name="thermocycler module")
     [p20_mount, tip_type, plate_type] = ["left", "opentrons_96_tiprack_20ul", "corning_96_wellplate_360ul_flat"]
-    tiprack = ctx.load_labware(tip_type, 6)
+    tiprack = ctx.load_labware(tip_type, 1)
     plate = ctx.load_labware(plate_type, 3)
-    tuberack = ctx.load_labware("opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap", 8)
+    tuberack = ctx.load_labware("opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap", 2)
     p20 = ctx.load_instrument("p20_single_gen2", p20_mount, tip_racks=[tiprack])
-    green = tuberack["B1"]
+    green = tuberack["A2"]
     blue = tuberack["B2"]
     green_wells = list(
         plate.wells(
